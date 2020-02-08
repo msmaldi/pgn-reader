@@ -1,12 +1,12 @@
 examples_dependencies = [
-    dependency('glib-2.0'),
-    dependency('gio-unix-2.0'),
+    glib,
+    gio_unix,
     lib_pgn_reader_dependency
 ]
 
 executable (
     'statistics', [ 'statistics.vala' ],
     dependencies: examples_dependencies,
-    c_args: [ '-O3' ],
+    c_args: [ c_recomend_flags ],
     install: false
 )

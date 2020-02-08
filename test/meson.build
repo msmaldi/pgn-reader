@@ -1,14 +1,24 @@
+vala_lint_conf = join_paths(meson.source_root(), 'test', 'vala-lint.conf')
+vala_lint = find_program('io.elementary.vala-lint')
+if (vala_lint.found())
+    test ('Vala Lint', vala_lint,
+        args: [ '-c', vala_lint_conf, meson.source_root() ]
+    )
+endif
+
 gchess_deps = [
-    dependency('glib-2.0'),
-    dependency('gio-unix-2.0'),
+    glib,
+    gio_unix,
     lib_pgn_reader_dependency
 ]
 
 pgn_reader_test = executable (
     'pgn-reader', [ 'pgn-reader-test.vala' ],
     dependencies: gchess_deps,
-    c_args: [ '-O3' ],
+    c_args: [ c_recomend_flags ],
     install: false
 )
 
-test ('PGN Test', pgn_reader_test)
+lichess_2013_02_pgn = join_paths (meson.source_root(), 'test/pgn/')
+
+test ('PGN Test', pgn_reader_test, args: [ lichess_2013_02_pgn ])

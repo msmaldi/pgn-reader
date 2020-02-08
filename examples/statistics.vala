@@ -21,12 +21,12 @@ public class PGNReaderStats : PGNReader
     }
 
     public override void on_san (string move)
-    {            
+    {
         move_count++;
     }
 
     public override void on_nag (int nag)
-    {            
+    {
         nag_count++;
     }
 
@@ -49,9 +49,8 @@ public class PGNReaderStats : PGNReader
     {
         game_count++;
     }
-    
-    public override void on_finish ()
-    {
+
+    public override void on_finish () {
         print ("Total Line Found:     %ld\n", line_count);
         print ("Total Tag Found:      %ld\n", tag_count);
         print ("Total Move Found:     %ld\n", move_count);
@@ -69,14 +68,14 @@ public class PGNReaderStats : PGNReader
 
 int main (string[] args)
 {
-    if (args.length < 2) 
+    if (args.length < 2)
     {
         print ("Usage: %s FILE\n", args[0]);
         return 0;
     }
 
     var infile = GLib.File.new_for_commandline_arg (args[1]);
-    if (!infile.query_exists ()) 
+    if (!infile.query_exists ())
     {
         stderr.printf ("File '%s' does not exist.\n", args[1]);
         return 1;
