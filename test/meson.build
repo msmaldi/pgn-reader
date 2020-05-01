@@ -1,5 +1,5 @@
 vala_lint_conf = join_paths(meson.source_root(), 'test', 'vala-lint.conf')
-vala_lint = find_program('io.elementary.vala-lint')
+vala_lint = find_program('io.elementary.vala-lint', required: false)
 if (vala_lint.found())
     test ('Vala Lint', vala_lint,
         args: [ '-c', vala_lint_conf, meson.source_root() ]
